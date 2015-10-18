@@ -1,5 +1,9 @@
 
 
+#define USB_BCD_V10 0x0100
+#define USB_BCD_V11 0x0110
+#define USB_BCD_V20 0x0200
+
 #define USB_ENDPOINT_NUMBER(x) \
 	(x & USB_ENDPOINT_NUMBER_MASK)
 
