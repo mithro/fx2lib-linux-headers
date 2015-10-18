@@ -19,6 +19,6 @@
 
 // Use a macro to make __attribute__ stuff disappear. sdcc always generates
 // "packed" structures.
-#define __attribute__()
+#define __attribute__(x)
 
 #endif // COMPAT_LINUX_TYPES_H
