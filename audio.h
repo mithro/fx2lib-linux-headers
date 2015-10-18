@@ -21,7 +21,7 @@
 #ifndef _UAPI__LINUX_USB_AUDIO_H
 #define _UAPI__LINUX_USB_AUDIO_H
 
-#include <linux/types.h>
+#include "compat-linux-types.h"
 
 /* bInterfaceProtocol values to denote the version of the standard used */
 #define UAC_VERSION_1			0x00

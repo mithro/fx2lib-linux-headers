@@ -14,7 +14,7 @@
 #ifndef __LINUX_USB_VIDEO_H
 #define __LINUX_USB_VIDEO_H
 
-#include <linux/types.h>
+#include "compat-linux-types.h"
 
 /* --------------------------------------------------------------------------
  * UVC constants
