@@ -33,8 +33,7 @@
 #ifndef _UAPI__LINUX_USB_CH9_H
 #define _UAPI__LINUX_USB_CH9_H
 
-#include <linux/types.h>	/* __u8 etc */
-#include <asm/byteorder.h>	/* le16_to_cpu */
+#include "compat-linux-types.h"
 
 /*-------------------------------------------------------------------------*/
 
@@ -374,6 +373,19 @@ struct usb_endpoint_descriptor {
 	__u8  bmAttributes;
 	__le16 wMaxPacketSize;
 	__u8  bInterval;
+} __attribute__ ((packed));
+
+#define USB_DT_ENDPOINT_SIZE		7
+
+/* USB_DT_ENDPOINT: Audio Endpoint descriptor */
+struct usb_audio_endpoint_descriptor {
+	__u8  bLength;
+	__u8  bDescriptorType;
+
+	__u8  bEndpointAddress;
+	__u8  bmAttributes;
+	__le16 wMaxPacketSize;
+	__u8  bInterval;
 
 	/* NOTE:  these two are _only_ in audio endpoints. */
 	/* use USB_DT_ENDPOINT*_SIZE in bLength, not sizeof. */
@@ -381,7 +393,6 @@ struct usb_endpoint_descriptor {
 	__u8  bSynchAddress;
 } __attribute__ ((packed));
 
-#define USB_DT_ENDPOINT_SIZE		7
 #define USB_DT_ENDPOINT_AUDIO_SIZE	9	/* Audio extension */
 
 
