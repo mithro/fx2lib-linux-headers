@@ -18,7 +18,7 @@
 #ifndef __LINUX_USB_MIDI_H
 #define __LINUX_USB_MIDI_H
 
-#include <linux/types.h>
+#include "compat-linux-types.h"
 
 /* A.1  MS Class-Specific Interface Descriptor Subtypes */
 #define USB_MS_HEADER		0x01
