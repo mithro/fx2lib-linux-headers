@@ -262,7 +262,7 @@ struct uvc_camera_terminal_descriptor {
 
 #define UVC_DT_CAMERA_TERMINAL_SIZE(n)			(15+(n))
 
-/* 3.7.2.4. Selector Unit Descriptor */
+/* 3.7.2.4. Selector Unit Descriptor
 struct uvc_selector_unit_descriptor {
 	__u8  bLength;
 	__u8  bDescriptorType;
@@ -272,6 +272,7 @@ struct uvc_selector_unit_descriptor {
 	__u8  baSourceID[0];
 	__u8  iSelector;
 } __attribute__((__packed__));
+*/
 
 #define UVC_DT_SELECTOR_UNIT_SIZE(n)			(6+(n))
 
@@ -289,7 +290,7 @@ struct UVC_SELECTOR_UNIT_DESCRIPTOR(n) {		\
 	__u8  iSelector;				\
 } __attribute__ ((packed))
 
-/* 3.7.2.5. Processing Unit Descriptor */
+/* 3.7.2.5. Processing Unit Descriptor
 struct uvc_processing_unit_descriptor {
 	__u8  bLength;
 	__u8  bDescriptorType;
@@ -301,10 +302,27 @@ struct uvc_processing_unit_descriptor {
 	__u8  bmControls[2];
 	__u8  iProcessing;
 } __attribute__((__packed__));
+*/
+
+#define UVC_PROCESSING_UNIT_DESCRIPTOR(n)	\
+	uvc_processing_unit_descriptor_##n
+
+#define DECLARE_UVC_PROCESSING_UNIT_DESCRIPTOR(n)	\
+struct UVC_PROCESSING_UNIT_DESCRIPTOR(n) {		\
+	__u8  bLength;					\
+	__u8  bDescriptorType;				\
+	__u8  bDescriptorSubType;			\
+	__u8  bUnitID;					\
+	__u8  bSourceID;				\
+	__u16 wMaxMultiplier;				\
+	__u8  bControlSize;				\
+	__u8  bmControls[n];				\
+	__u8  iProcessing;				\
+} __attribute__ ((packed))
 
 #define UVC_DT_PROCESSING_UNIT_SIZE(n)			(9+(n))
 
-/* 3.7.2.6. Extension Unit Descriptor */
+/* 3.7.2.6. Extension Unit Descriptor
 struct uvc_extension_unit_descriptor {
 	__u8  bLength;
 	__u8  bDescriptorType;
@@ -318,6 +336,7 @@ struct uvc_extension_unit_descriptor {
 	__u8  bmControls[0];
 	__u8  iExtension;
 } __attribute__((__packed__));
+*/
 
 #define UVC_DT_EXTENSION_UNIT_SIZE(p, n)		(24+(p)+(n))
 
