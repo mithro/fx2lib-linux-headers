@@ -24,6 +24,7 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 git checkout "linux-raw"
 
 for HEADER in \
+		include/linux/bug.h \
 		include/uapi/linux/usb/audio.h \
 		include/uapi/linux/usb/cdc.h \
 		include/uapi/linux/usb/ch9.h \
