@@ -14,6 +14,9 @@ for HEADER in \
 		include/uapi/linux/usb/midi.h \
 		include/uapi/linux/usb/tmc.h \
 		include/uapi/linux/usb/video.h \
+		drivers/media/usb/uvc/uvcvideo.h \
+		drivers/usb/serial/ftdi_sio.h \
+		drivers/usb/serial/ftdi_sio_ids.h \
 		; do
         FILENAME=$(basename $HEADER)
 	# http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/include/uapi/linux/usb/ch9.h
