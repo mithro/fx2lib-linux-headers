@@ -43,4 +43,10 @@ struct usb_endpoint_attributes {
 #define USB_DT_DEVICE_QUALIFIER_SIZE \
 	sizeof(struct usb_qualifier_descriptor)
 
+#define USB_STRING_INDEX_NONE \
+	0
+
+#define USB_STRING_INDEX(x) \
+	(x+1)
+
 #endif
