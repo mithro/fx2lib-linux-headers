@@ -1,4 +1,20 @@
 #!/bin/bash
+# Copyright (C) 2015 Google, Inc
+#
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License version 2 as published by the
+# Free Software Foundation.
+# ---
+#
+# Switch to the "linux-raw" branch and download USB headers from the Linux
+# kernel.
+#
+# The "linux-raw" branch can then be merged into master (git merge linux-raw)
+# to allow git to gracefully merge the modifications we have made to the header
+# files.
+#
+# FIXME: This should get the git revision from the Linux kernel and record it.
+#
 
 set -x
 set -e
