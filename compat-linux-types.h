@@ -9,7 +9,9 @@
 #define BYTE int8_t
 #define WORD int16_t
 #define DWORD int32_t
+#define __code
 #define __xdata
+#define __at(x)
 
 int main() {
 	return 0;
