@@ -28,6 +28,7 @@
 
 /* A.3. Video Interface Protocol Codes */
 #define UVC_PC_PROTOCOL_UNDEFINED			0x00
+#define UVC_PC_PROTOCOL_15				0x01	// New in 1.5
 
 /* A.5. Video Class-Specific VC Interface Descriptor Subtypes */
 #define UVC_VC_DESCRIPTOR_UNDEFINED			0x00
@@ -37,6 +38,7 @@
 #define UVC_VC_SELECTOR_UNIT				0x04
 #define UVC_VC_PROCESSING_UNIT				0x05
 #define UVC_VC_EXTENSION_UNIT				0x06
+#define UVC_VC_ENCODING_UNIT				0x07	// New in 1.5
 
 /* A.6. Video Class-Specific VS Interface Descriptor Subtypes */
 #define UVC_VS_UNDEFINED				0x00
@@ -47,12 +49,21 @@
 #define UVC_VS_FRAME_UNCOMPRESSED			0x05
 #define UVC_VS_FORMAT_MJPEG				0x06
 #define UVC_VS_FRAME_MJPEG				0x07
+// 0x08 is reserved
+// 0x09 is reserved
 #define UVC_VS_FORMAT_MPEG2TS				0x0a
+// 0x0b is reserved
 #define UVC_VS_FORMAT_DV				0x0c
 #define UVC_VS_COLORFORMAT				0x0d
 #define UVC_VS_FORMAT_FRAME_BASED			0x10
 #define UVC_VS_FRAME_FRAME_BASED			0x11
 #define UVC_VS_FORMAT_STREAM_BASED			0x12
+#define UVC_VS_FORMAT_H264				0x13	// New in 1.5
+#define UVC_VS_FRAME_H264				0x14	// New in 1.5
+#define UVC_VS_FORMAT_H264_SIMULCAST			0x15	// New in 1.5
+#define UVC_VS_FORMAT_VP8				0x16	// New in 1.5
+#define UVC_VS_FRAME_VP8				0x17	// New in 1.5
+#define UVC_VS_FORMAT_VP8_SIMULCAST			0x18	// New in 1.5
 
 /* A.7. Video Class-Specific Endpoint Descriptor Subtypes */
 #define UVC_EP_UNDEFINED				0x00
@@ -63,6 +74,7 @@
 /* A.8. Video Class-Specific Request Codes */
 #define UVC_RC_UNDEFINED				0x00
 #define UVC_SET_CUR					0x01
+#define UVC_SET_CUR_ALL					0x11
 #define UVC_GET_CUR					0x81
 #define UVC_GET_MIN					0x82
 #define UVC_GET_MAX					0x83
@@ -70,11 +82,19 @@
 #define UVC_GET_LEN					0x85
 #define UVC_GET_INFO					0x86
 #define UVC_GET_DEF					0x87
+#define UVC_GET_CUR_ALL					0x91	// New in 1.5
+#define UVC_GET_MIN_ALL					0x92	// New in 1.5
+#define UVC_GET_MAX_ALL					0x93	// New in 1.5
+#define UVC_GET_RES_ALL					0x94	// New in 1.5
+// reserved #define UVC_GET_LEN				0x85	// New in 1.5
+// reserved #define UVC_GET_INFO			0x86	// New in 1.5
+#define UVC_GET_DEF_all					0x97	// New in 1.5
 
 /* A.9.1. VideoControl Interface Control Selectors */
 #define UVC_VC_CONTROL_UNDEFINED			0x00
 #define UVC_VC_VIDEO_POWER_MODE_CONTROL			0x01
 #define UVC_VC_REQUEST_ERROR_CODE_CONTROL		0x02
+// reserved 0x03
 
 /* A.9.2. Terminal Control Selectors */
 #define UVC_TE_CONTROL_UNDEFINED			0x00
@@ -102,6 +122,9 @@
 #define UVC_CT_ROLL_ABSOLUTE_CONTROL			0x0f
 #define UVC_CT_ROLL_RELATIVE_CONTROL			0x10
 #define UVC_CT_PRIVACY_CONTROL				0x11
+#define UVC_CT_FOCUS_SIMPLE_CONTROL			0x12	// New in 1.5
+#define UVC_CT_WINDOW_CONTROL				0x13	// New in 1.5
+#define UVC_CT_REGION_OF_INTEREST_CONTROL		0x14	// New in 1.5
 
 /* A.9.5. Processing Unit Control Selectors */
 #define UVC_PU_CONTROL_UNDEFINED			0x00
@@ -123,6 +146,9 @@
 #define UVC_PU_HUE_AUTO_CONTROL				0x10
 #define UVC_PU_ANALOG_VIDEO_STANDARD_CONTROL		0x11
 #define UVC_PU_ANALOG_LOCK_STATUS_CONTROL		0x12
+#define UVC_PU_PU_CONTRAST_AUTO_CONTROL			0x13	// New in 1.5
+
+/* FIXME: A.9.6. Encoding Unit Control Selectors */
 
 /* A.9.7. VideoStreaming Interface Control Selectors */
 #define UVC_VS_CONTROL_UNDEFINED			0x00
