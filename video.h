@@ -199,9 +199,10 @@
 /* 4.1.2. Control Capabilities */
 #define UVC_CONTROL_CAP_GET				(1 << 0)
 #define UVC_CONTROL_CAP_SET				(1 << 1)
-#define UVC_CONTROL_CAP_DISABLED			(1 << 2)
+#define UVC_CONTROL_CAP_DISABLED_AUTO			(1 << 2)
 #define UVC_CONTROL_CAP_AUTOUPDATE			(1 << 3)
 #define UVC_CONTROL_CAP_ASYNCHRONOUS			(1 << 4)
+#define UVC_CONTROL_CAP_DISABLED_INCOMPAT		(1 << 5)	// New in 1.5
 
 /* ------------------------------------------------------------------------
  * UVC structures
