@@ -18,20 +18,7 @@
 #define _USB_VIDEO_EXTRA_H_
 
 #define UVC_BCD_V10 0x0100
-
-// Uncompressed video frames
-// #define bmCapabilities D0 - Still image supported
-/*
-Specifies whether still images are supported at this frame setting. This is
-only applicable for VS interfaces with an IN video endpoint using Still Image
-Capture Method 1, and should be set to 0 in all other cases.
-*/
-
-// #define bmCapabilities D1 - Fixed frame rate
-/*
-Specifies whether the device provides a fixed frame rate on a stream associated
-with this frame descriptor.  Set to 1 if fixed rate is enabled; otherwise, set
-to 0.
-*/
+#define UVC_BCD_V11 0x0110
+#define UVC_BCD_V15 0x0150
 
 #endif
