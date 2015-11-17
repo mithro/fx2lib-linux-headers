@@ -299,6 +299,7 @@ struct usb_device_descriptor {
 #define USB_CLASS_VENDOR_SPEC		0xff
 
 #define USB_SUBCLASS_VENDOR_SPEC	0xff
+#define USB_PROTOCOL_VENDOR_SPEC	0xff
 
 /*-------------------------------------------------------------------------*/
 
