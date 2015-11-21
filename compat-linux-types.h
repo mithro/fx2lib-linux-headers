@@ -3,7 +3,7 @@
 #ifndef COMPAT_LINUX_TYPES_H
 #define COMPAT_LINUX_TYPES_H
 
-#ifndef SDCC
+#ifndef __SDCC
 #include <stdint.h>
 
 #define BYTE int8_t
