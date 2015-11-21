@@ -515,45 +515,6 @@ struct uvc_format_uncompressed {
 
 #define UVC_DT_FORMAT_UNCOMPRESSED_SIZE			27
 
-/* Uncompressed Payload - 3.1.2. Uncompressed Video Frame Descriptor */
-struct uvc_frame_uncompressed {
-	__u8  bLength;
-	__u8  bDescriptorType;
-	__u8  bDescriptorSubType;
-	__u8  bFrameIndex;
-	__u8  bmCapabilities;
-	__u16 wWidth;
-	__u16 wHeight;
-	__u32 dwMinBitRate;
-	__u32 dwMaxBitRate;
-	__u32 dwMaxVideoFrameBufferSize;
-	__u32 dwDefaultFrameInterval;
-	__u8  bFrameIntervalType;
-	__u32 dwFrameInterval[];
-} __attribute__((__packed__));
-
-#define UVC_DT_FRAME_UNCOMPRESSED_SIZE(n)		(26+4*(n))
-
-#define UVC_FRAME_UNCOMPRESSED(n) \
-	uvc_frame_uncompressed_##n
-
-#define DECLARE_UVC_FRAME_UNCOMPRESSED(n)		\
-struct UVC_FRAME_UNCOMPRESSED(n) {			\
-	__u8  bLength;					\
-	__u8  bDescriptorType;				\
-	__u8  bDescriptorSubType;			\
-	__u8  bFrameIndex;				\
-	__u8  bmCapabilities;				\
-	__u16 wWidth;					\
-	__u16 wHeight;					\
-	__u32 dwMinBitRate;				\
-	__u32 dwMaxBitRate;				\
-	__u32 dwMaxVideoFrameBufferSize;		\
-	__u32 dwDefaultFrameInterval;			\
-	__u8  bFrameIntervalType;			\
-	__u32 dwFrameInterval[n];			\
-} __attribute__ ((packed))
-
 /* MJPEG Payload - 3.1.1. MJPEG Video Format Descriptor */
 struct uvc_format_mjpeg {
 	__u8  bLength;
@@ -571,8 +532,8 @@ struct uvc_format_mjpeg {
 
 #define UVC_DT_FORMAT_MJPEG_SIZE			11
 
-/* MJPEG Payload - 3.1.2. MJPEG Video Frame Descriptor */
-struct uvc_frame_mjpeg {
+/* Video Frame Descriptor common to Uncompressed and MJPEG formats */
+struct uvc_frame_common {
 	__u8  bLength;
 	__u8  bDescriptorType;
 	__u8  bDescriptorSubType;
@@ -588,13 +549,13 @@ struct uvc_frame_mjpeg {
 	__u32 dwFrameInterval[];
 } __attribute__((__packed__));
 
-#define UVC_DT_FRAME_MJPEG_SIZE(n)			(26+4*(n))
+#define UVC_DT_FRAME_COMMON_SIZE(n)		(26+4*(n))
 
-#define UVC_FRAME_MJPEG(n) \
-	uvc_frame_mjpeg_##n
+#define UVC_FRAME_COMMON(n) \
+	uvc_frame_common_##n
 
-#define DECLARE_UVC_FRAME_MJPEG(n)			\
-struct UVC_FRAME_MJPEG(n) {				\
+#define DECLARE_UVC_FRAME_COMMON(n)			\
+struct UVC_FRAME_COMMON(n) {				\
 	__u8  bLength;					\
 	__u8  bDescriptorType;				\
 	__u8  bDescriptorSubType;			\
@@ -609,6 +570,18 @@ struct UVC_FRAME_MJPEG(n) {				\
 	__u8  bFrameIntervalType;			\
 	__u32 dwFrameInterval[n];			\
 } __attribute__ ((packed))
+
+/* Uncompressed Payload - 3.1.2. Uncompressed Video Frame Descriptor */
+#define uvc_frame_mjpeg uvc_frame_common
+#define UVC_DT_FRAME_UNCOMPRESSED_SIZE(n)		UVC_DT_FRAME_COMMON_SIZE(n)
+#define UVC_FRAME_UNCOMPRESSED(n)			UVC_FRAME_COMMON(n)
+#define DECLARE_UVC_FRAME_UNCOMPRESSED(n)		DECLARE_UVC_FRAME_COMMON(n)
+
+/* MJPEG Payload - 3.1.2. MJPEG Video Frame Descriptor */
+#define uvc_frame_mjpeg uvc_frame_common
+#define UVC_DT_FRAME_MJPEG_SIZE(n)			UVC_DT_FRAME_COMMON_SIZE(n)
+#define UVC_FRAME_MJPEG(n)				UVC_FRAME_COMMON(n)
+#define DECLARE_UVC_FRAME_MJPEG(n)			DECLARE_UVC_FRAME_COMMON(n)
 
 #endif /* __LINUX_USB_VIDEO_H */
 
