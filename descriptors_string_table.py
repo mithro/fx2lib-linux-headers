@@ -1,10 +1,19 @@
 #!/usr/bin/python3
 
+import argparse
 import sys
+
+parser = argparse.ArgumentParser(description="Generate a C file containing strings in the format needed by the USB descriptors")
+parser.add_argument("--header", action="store_true", help="output in header file style")
+parser.add_argument("--cfile", action="store_true", help="output in C filefile style")
+args = parser.parse_args()
+
+if not (args.header or args.cfile):
+	parser.error("No format requested, add --header or --cfile")
 
 strings = [x.strip() for x in sys.stdin.readlines()]
 
-if sys.argv[1] == "--header":
+if args.header:
 	print("""\
 // This is an auto-generated file!
 #include <ch9.h>
@@ -32,7 +41,7 @@ struct usb_descriptors_strings {
 #endif // DESCRIPTORS_STRING_TABLE_H_
 """)
 
-if sys.argv[1] == "--cfile":
+if args.cfile:
 	print("""\
 	.strings = {
 		// English language header
