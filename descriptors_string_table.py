@@ -31,11 +31,11 @@ struct usb_descriptors_strings {
 	} language;""")
 	for i, string in enumerate(strings):
 		print("""\
-	struct usb_string_%(i)i {
+	struct usb_string_{i} {{
 		__u8 bLength;
 		__u8 bDescriptorType;
-		__le16 wData[%(l)i];
-	} string%(i)i;""" % {'l': len(string), 'i': i})
+		__le16 wData[{l}];
+	}} string{i};""".format(l=len(string), i=i))
 	print("""\
 };
 
@@ -54,20 +54,20 @@ if args.cfile:
 			.wData = { 0x0409 }, // 0x0409 is English
 		},""")
 	for i, string in enumerate(strings):
-		d = ["((__le16)('%s'))" % s for s in string]
+		data = ["((__le16)('{}'))".format(s) for s in string]
 
 		print("""\
-		// "%(s)s"
-		.string%(i)i = {
-			.bLength = sizeof(struct usb_string_%(i)i),
+		// "{s}"
+		.string{i} = {{
+			.bLength = sizeof(struct usb_string_{i}),
 			.bDescriptorType = USB_DT_STRING,
-			.wData = {%(d)s},
-		},""" % {
-		's': string,
-		'i': i,
-		'l': len(string),
-		'd': ", ".join(d),
-		})
+			.wData = {{{d}}},
+		}},""".format(
+		s=string,
+		i=i,
+		l=len(string),
+		d=", ".join(data),
+		))
 	print("""\
 	},
 """)
