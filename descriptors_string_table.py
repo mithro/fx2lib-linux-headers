@@ -4,14 +4,21 @@ import argparse
 import sys
 
 parser = argparse.ArgumentParser(
-    description="Generate a C file containing strings in the format needed " +
-    "by the USB descriptors")
-parser.add_argument("--header",
-                    action="store_true",
-                    help="output in header file style")
-parser.add_argument("--cfile",
-                    action="store_true",
-                    help="output in C filefile style")
+    description=(
+        "Generate a C file containing strings in the format needed "
+        "by the USB descriptors."
+    ),
+)
+parser.add_argument(
+    "--header",
+    action="store_true",
+    help="output the C header file (.h)",
+)
+parser.add_argument(
+    "--cfile",
+    action="store_true",
+    help="output the C body file (.c)b",
+)
 args = parser.parse_args()
 
 if not (args.header or args.cfile):
